@@ -11,9 +11,10 @@
 #import "MenuViewController.h"
 #import "DrawerViewController.h"
 #import "AnecdoteViewController.h"
-#include "GossipViewController.h"
-#include "InteresViewController.h"
-#include "OtherViewController.h"
+#import "GossipViewController.h"
+#import "InteresViewController.h"
+#import "OtherViewController.h"
+#import "XGPush.h"
 @interface AppDelegate ()<UITabBarControllerDelegate>
 @property(nonatomic,strong)UITabBarController *tab;
 
@@ -45,10 +46,64 @@
     [self.window makeKeyAndVisible];
     
     
+    
+    
+//    信鸽推送
+    NSLog(@"%@",[UIDevice currentDevice].name);
+    NSLog(@"%@",[UIDevice currentDevice].model);
+    NSLog(@"%@",[UIDevice currentDevice].localizedModel);
+    NSLog(@"%@",[UIDevice currentDevice].systemName);
+    NSLog(@"%@",[UIDevice currentDevice].systemVersion);
+//    
+    if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
+        
+        NSInteger badge = [UIApplication sharedApplication].applicationIconBadgeNumber;
+        
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:++badge];
+    }
+    
+    //UIDevice 类  用于获取硬件本身的信息
+    if([[UIDevice currentDevice].systemVersion floatValue] >= 8.0){
+        //创建通知配置选项
+        UIUserNotificationSettings *userSetting = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert |UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil];
+        //用于设置通知的配置选项
+        [[UIApplication sharedApplication] registerUserNotificationSettings:userSetting];
+        //注册远程通知的方法
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }else{
+        //8.0之后被弃用的注册远程推送的方式
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert |UIUserNotificationTypeBadge | UIUserNotificationTypeSound) categories:nil]];
+    }
+    
+    //开启信鸽服务
+    [XGPush startApp:2200194644 appKey:@"I388JWBUG62T"];
+    [XGPush setAccount:@"929234113"];
+    
+    
+    
     return YES;
 }
 
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"注册失败%@",error);
+}
 
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    NSLog(@"注册成功 设备Token = %@",deviceToken);
+    
+    //获取符合信鸽格式的Token
+    [XGPush registerDevice:deviceToken];
+    NSLog(@"注册成功 设备Token = %@",[XGPush registerDevice:deviceToken]);
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    completionHandler = ^(UIBackgroundFetchResult result){
+        
+        application.applicationIconBadgeNumber += 1;
+    };
+}
 -(void)tabselect{
     self.tab = [[UITabBarController alloc ] init];
     AnecdoteViewController *anecdote = [[AnecdoteViewController alloc] init];

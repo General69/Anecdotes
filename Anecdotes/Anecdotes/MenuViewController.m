@@ -25,23 +25,22 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-   
+    
     self.name = [[UILabel alloc] initWithFrame:CGRectMake(280 / 2 - 50, 170, 100, 30)];
     self.name.backgroundColor  = [UIColor blackColor];
     
-//    UIImageView *bgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Anecd.jpg"]];
-    //    bgView.frame = CGRectMake(0, 0, 280, self.view.bounds.size.height);
+    UIImageView *bgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Menu.jpg"]];
+        bgView.frame = CGRectMake(0, 0, 280, self.view.bounds.size.height);
     
-    //    [self.view addSubview:bgView];
-    UIImage *bgImage = [UIImage imageNamed:@"Menu.jpg"];
-     self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+        [self.view addSubview:bgView];
+//    UIImage *bgImage = [UIImage imageNamed:@"Menu.jpg"];
+//     self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
 
     
     [self.view addSubview:self.name];
      [self.view addSubview:self.portraitImageView];
     [self loadPortrait];
     
-    [self imageView];
  
 }
 

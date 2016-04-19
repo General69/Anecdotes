@@ -66,7 +66,7 @@
         currentController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"669.png"] style:(UIBarButtonItemStylePlain) target:self action:@selector(leftAction)];
         NSLog(@"%ld",self.uinterger);
         
-        currentController.title = @"趣闻";
+        currentController.title = @"趣闻秀";
     }
 }
 
