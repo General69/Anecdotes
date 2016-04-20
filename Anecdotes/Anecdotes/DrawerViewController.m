@@ -63,7 +63,7 @@
         _rootViewController.view.frame = self.view.bounds;
         [self.view addSubview:_rootViewController.view];
         UIViewController *currentController = ((UINavigationController *)self.rootViewController).viewControllers[0];
-        currentController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"669.png"] style:(UIBarButtonItemStylePlain) target:self action:@selector(leftAction)];
+        currentController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"登陆-1@1x.png"] style:(UIBarButtonItemStylePlain) target:self action:@selector(leftAction)];
         NSLog(@"%ld",self.uinterger);
         
         currentController.title = @"趣闻秀";

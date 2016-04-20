@@ -9,5 +9,13 @@
 #import "AnecdoteModel.h"
 
 @implementation AnecdoteModel
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key{
 
+   
+    if ([key isEqualToString:@"id"]) {
+        self.Id = value;
+    }
+    
+    
+}
 @end

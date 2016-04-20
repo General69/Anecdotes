@@ -11,4 +11,5 @@
 //一、阅读模块请求地址
 //1、首页轮播
 #define SHOWGET_URL           @"http://news.roboo.com/editLink.htm?cid=4006"
+#define SHOWCELLGET_URL           @"http://news.roboo.com/news/hotJson.htm?uid=&p=1&ps=15&isapp=yes"
  /* UrHeadersDefine_h */

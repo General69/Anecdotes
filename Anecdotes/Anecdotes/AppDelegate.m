@@ -15,6 +15,7 @@
 #import "InteresViewController.h"
 #import "OtherViewController.h"
 #import "XGPush.h"
+#import "UIImage+Additon.h"
 @interface AppDelegate ()<UITabBarControllerDelegate>
 @property(nonatomic,strong)UITabBarController *tab;
 
@@ -29,7 +30,7 @@
       [self tabselect];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.tab];
     
-  
+    navController.navigationBar.barTintColor = [UIColor cyanColor];
     
     DrawerViewController *rootController = [[DrawerViewController alloc] initWithRootController:navController];
     
@@ -115,15 +116,16 @@
     self.tab.tabBar.tintColor = [UIColor grayColor];
     self.tab.delegate = self;
     
-    UIImage *fitstImage = [[UIImage imageNamed:@"tabbar_contacts@3x"]imageWithRenderingMode:(UIImageRenderingModeAlwaysOriginal)];
+    UIImage *fitstImage = [[UIImage imageNamed:@"Home1@1x.png"]imageWithRenderingMode:(UIImageRenderingModeAlwaysOriginal)];
+
     
-    anecdote.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"趣闻" image:fitstImage selectedImage:[[UIImage imageNamed:@"tabbar_contactsHL@3x"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    anecdote.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"趣闻" image:fitstImage selectedImage:[[UIImage imageNamed:@"Home2@1x.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+ 
+    gossip.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"杂谈" image:[[UIImage imageNamed:@"Hot@1x.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"Hot2@1x.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ]];
     
-    gossip.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"杂谈" image:[[UIImage imageNamed:@"tabbar_discover@3x"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tabbar_discoverHL@3x"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ]];
+    interes.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"兴趣" image:[[UIImage imageNamed:@"news1@1x.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]selectedImage:[[UIImage imageNamed:@"news2@1x.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
-    interes.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"兴趣" image:[[UIImage imageNamed:@"tabbar_mainframe@3x"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]selectedImage:[[UIImage imageNamed:@"tabbar_mainframeHL@3x"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    
-    other.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"其他" image:[[UIImage imageNamed:@"tabbar_me@3x"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] selectedImage:[[UIImage imageNamed:@"tabbar_meHL@3x"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    other.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"其他" image:[[UIImage imageNamed:@"本地资讯@1x.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] selectedImage:[[UIImage imageNamed:@"本地资讯-1@1x.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
 }
 
